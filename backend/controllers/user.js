@@ -149,7 +149,7 @@ exports.deleteUser = (req, res) => {
         let filename = user.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
         fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
           User.deleteOne({_id: req.params.id})                 // Suppression du user
-            .then(() => res.status(200).json({ message : "Sauce deleted"})) // Requête ok
+            .then(() => res.status(200).json({ message : "User deleted"})) // Requête ok
             .catch(error => res.status(400).json({error}));                 // Mauvaise requête
         })
       } else {
