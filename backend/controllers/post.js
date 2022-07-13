@@ -41,7 +41,6 @@ exports.createPost = (req,res) => {
         }
 };
 
-
 // Récupération de tous les posts
 exports.getAllPosts = (req, res) => {
     Post.find()
@@ -108,4 +107,29 @@ exports.deletePost = (req, res) => {
       }
     })
     .catch(error => res.status(404).json({ error }));   // Ressource non trouvée
-}
+};
+
+// Like/unlike d'un post
+exports.likePost = (req,res) => {
+  Post.findOne({_id: req.params.id})                 // Recherche du post avec l'id
+    .then (post => {
+      if(req.body.userId) {   // Test si présence d'un userId dans la requête
+        let haveUserAlreadyLiked = post.likersId.find(user => user == req.body.userId); // Prend la valeur de l'userId (qui peut être convertie en true) si il a déjà like sinon undefined
+
+        if (!haveUserAlreadyLiked){ // Si l'utilisateur n'a pas déjà liker
+          Post.updateOne({_id: req.params.id}, {$push: {likersId: req.body.userId}})  // Ajoute le userId dans le tableau des likers du post
+            .then(() => res.status(200).json({ message: 'Post liked'})) // Requête ok
+            .catch(error => res.status(400).json({ error }));               // Mauvaise requête
+        } else {  // Si l'utilisateur a déjà liker
+          Post.updateOne({_id: req.params.id}, {$pull: {likersId: req.body.userId}})  // Retire le userId dans le tableau des likers du post
+            .then(() => res.status(200).json({ message: 'Post unliked'})) // Requête ok
+            .catch(error => res.status(400).json({ error }));               // Mauvaise requête
+        }
+
+      } else {
+        res.status(400).json({ message: 'You must had a userId to like'});
+      }
+    })
+
+    .catch(error => res.status(404).json({ error }));   // Ressource non trouvée
+};
