@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const postSchema = mongoose.Schema({
     postUserId: {type: String, required: true},
     message: {type: String, required: true, maxlength: 500, trim: true},
-    imageUrl: {type: String},
+    imageUrl: {type: String, default: ''},
     likersId: {type: [String], default: []},
     comments: {type: [{ commentUserId: String, text: String, timestamp: Number }], default: []}
 })

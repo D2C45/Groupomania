@@ -64,16 +64,16 @@ exports.modifyPost = (req, res) => {
         if (post.postUserId == req.token.userId) {           // Test si le userId du token correspond à celui du post à modifier
 
           if (req.file) {                                 // Test si présence d'un fichier dans la requête
-            let filename = sauce.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
-            fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
-              const postObject = {                                 // Création du nouvel objet post
-                ...JSON.parse(req.body.post),                      // Conversion du corps de la requête en objet json
-                imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`  // Mise à jour de l'url de la nouvelle image
-              }
-              Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id }) // Récupère le post avec l'id passé en paramètre et le remplace par le nouvel objet post créé auquel on rajoute le même id
-                .then(() => res.status(200).json({ message: 'Post modified'})) // Requête ok
-                .catch(error => res.status(400).json({ error }));               // Mauvaise requête
-            })
+              let filename = post.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
+              fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
+                const postObject = {                                 // Création du nouvel objet post
+                  ...JSON.parse(req.body.post),                      // Conversion du corps de la requête en objet json
+                  imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`  // Mise à jour de l'url de la nouvelle image
+                }
+                Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id }) // Récupère le post avec l'id passé en paramètre et le remplace par le nouvel objet post créé auquel on rajoute le même id
+                  .then(() => res.status(200).json({ message: 'Post modified'})) // Requête ok
+                  .catch(error => res.status(400).json({ error }));               // Mauvaise requête
+              })
 
           } else {                                                                          // Si pas de fichier dans la requête
             Post.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })    // Rempacement par le corps de la requête
@@ -97,7 +97,7 @@ exports.deletePost = (req, res) => {
   Post.findOne({_id: req.params.id})                   // Recherche du post avec l'id
     .then (post => {
       if (post.postUserId == req.token.userId) {           // Test si le userId du token correspond à celui du post à modifier
-        let filename = sauce.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
+        let filename = post.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
         fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
           Post.deleteOne({_id: req.params.id})                 // Suppression du post
             .then(() => res.status(200).json({ message : "Post deleted"})) // Requête ok
