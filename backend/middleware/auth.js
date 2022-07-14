@@ -12,7 +12,11 @@ module.exports = (req, res, next) => {
     req.token = jwt.verify(token, process.env.TOKEN_PASSWORD);       // Décodage du token et ajout dans la requête pour pouvoir être utilisé dans les controllers
     if (req.body.userId && req.body.userId !== req.token.userId) {          // Comparaison du userId de la requête avec celui du token
       throw 'Unauthorized request';
-    } else {
+    }
+    if (req.body.commentUserId && req.body.commentUserId !== req.token.userId) {          // Comparaison du userId de la requête avec celui du token
+      throw 'Unauthorized request';
+    }
+     else {
       next();
     }
   } catch {                                     // Capture des erreurs
