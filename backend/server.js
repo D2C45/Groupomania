@@ -6,7 +6,7 @@ const app = require('./app');
 const functions = require('./utils/functions');
 
 // Déclaration du port normalisé
-const port = functions.normalizePort(process.env.PORT ||'3000');
+const port = functions.normalizePort(process.env.PORT ||'5000');
 
 // Définition du port sur lequel va fonctionner l'application
 app.set('port', port);
