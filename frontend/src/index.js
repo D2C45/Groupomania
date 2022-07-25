@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
-import Posts from './pages/posts';
+import Login from './pages/login';
 import Error from './pages/error';
 import './styles/index.css';
 
@@ -12,7 +12,7 @@ root.render(
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/posts" element={<Posts />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes> 
     </Router>

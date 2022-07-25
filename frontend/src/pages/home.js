@@ -1,8 +1,6 @@
-import Signin from "../components/signin";
-
 const Home = () => {
   return (
-    <Signin />
+    <div>home</div>
   );
 };
 
