@@ -3,7 +3,7 @@ import axios from 'axios';
 import FormInput from './form-input';
 import Button from './button';
 
-const Signin = () => {
+const Signin = ({setToken}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -36,8 +36,8 @@ const Signin = () => {
             })
                 .then ((response) => {
                     console.log(response);
-                    localStorage.setItem("auth", JSON.stringify(response.data));
-                    window.location = '/';
+                    localStorage.setItem('auth', JSON.stringify(response.data));
+                    setToken(response.data.token);
                 })
                 .catch (function(error) {
                     console.log(error);

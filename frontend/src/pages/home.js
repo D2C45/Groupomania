@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Home = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   return (
-    <div>Home</div>
+      <div>Home</div>
   );
 };
 

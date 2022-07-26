@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Signup from '../components/signupForm';
 import Signin from '../components/signinForm';
 
-const Login = () => {
+const Login = ({setToken}) => {
     const [isSignup, setIsSignup] = useState(false);
 
     return (
@@ -15,8 +15,8 @@ const Login = () => {
                     <img src={logo} alt='logo de Groupomania' className='logo' />
                 </div>
 
-                {isSignup ? <Signup isSignup={isSignup} setIsSignup={setIsSignup}/> : <Signin />}
-                
+                {isSignup ? <Signup isSignup={isSignup} setIsSignup={setIsSignup}/> : <Signin setToken={setToken} />}
+
                 <FormBottom alreadyOrNot={'Pas encore'} btnDescription={`S'inscrire`} isSignup={isSignup} setIsSignup={setIsSignup}/>
             </div>
         </main>
