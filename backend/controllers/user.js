@@ -56,12 +56,12 @@ exports.login = (req, res) => {
     User.findOne({email: req.body.email}) // Recherche dans la base de données de l'email de la requête
       .then(user => {
         if (!user) {
-          return res.status(401).json({error: 'User not found'}); // Message d'erreur si le user n'existe pas dans la base de données (non autorisé)
+          return res.status(401).json({error: `Cet utilisateur n'existe pas`}); // Message d'erreur si le user n'existe pas dans la base de données (non autorisé)
         }
         bcrypt.compare(req.body.password, user.password) // Comparaison du password contenu dans la requête avec le hash de la base de données
           .then(valid => {
             if (!valid) {
-              return res.status(401).json({error: 'Invalid password'}); // Message d'erreur si le mot de passe ne correspond pas (non autorisé)
+              return res.status(401).json({error: 'Mot de passe invalide'}); // Message d'erreur si le mot de passe ne correspond pas (non autorisé)
             }
             res.status(200).json({                // Sinon renvoit un objet json avec l'userId et un token d'authentification
               userId: user._id,

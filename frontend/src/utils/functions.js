@@ -5,9 +5,11 @@
  * @param {string} setEmailErrorMsg le state du message d'erreur
  * @returns 
  */
-exports.emailValidation = (event, setEmail, setEmailErrorMsg) => {
+exports.emailValidation = (event, setEmail, setEmailErrorMsg, setEmailValid) => {
     const emailInputValue = event.target.value.trim();
     setEmail(emailInputValue);
+
+    setEmailValid(false);
 
     const emailRegExp = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
     const emailLength = emailInputValue.length;
@@ -15,7 +17,6 @@ exports.emailValidation = (event, setEmail, setEmailErrorMsg) => {
     let testEmail = emailRegExp.test(emailInputValue);
 
     let msg;
-    let valid = false;
 
     if (emailLength === 0) {
         msg='Ce champ est requis'       
@@ -25,10 +26,9 @@ exports.emailValidation = (event, setEmail, setEmailErrorMsg) => {
     }
     else {
         msg='';
-        valid = true;
+        setEmailValid(true);
     }
     setEmailErrorMsg(msg);
-    return valid;
 }
 
 /**
@@ -38,9 +38,11 @@ exports.emailValidation = (event, setEmail, setEmailErrorMsg) => {
  * @param {string} setPasswordErrorMsg le state du message d'erreur
  * @returns 
  */
-exports.passwordValidation = (event, setPassword, setPasswordErrorMsg) => {
+exports.passwordValidation = (event, setPassword, setPasswordErrorMsg, setPasswordValid) => {
     const passwordInputValue = event.target.value.trim();
     setPassword(passwordInputValue);
+
+    setPasswordValid(false);
 
     const uppercaseRegExp   = /(?=.*?[A-Z])/;
     const lowercaseRegExp   = /(?=.*?[a-z])/;
@@ -56,7 +58,6 @@ exports.passwordValidation = (event, setPassword, setPasswordErrorMsg) => {
     let testMinLength = minLengthRegExp.test(passwordInputValue);
 
     let msg;
-    let valid = false;
 
     if(passwordLength === 0) {
         msg='Ce champ est requis'
@@ -78,10 +79,9 @@ exports.passwordValidation = (event, setPassword, setPasswordErrorMsg) => {
     }
     else {
         msg='';
-        valid = true;        
+        setPasswordValid(true);
     }
     setPasswordErrorMsg(msg);
-    return valid;
 }
 
 /**
@@ -91,9 +91,11 @@ exports.passwordValidation = (event, setPassword, setPasswordErrorMsg) => {
  * @param {string} setNameErrorMsg le state du message d'erreur
  * @returns 
  */
-exports.nameValidation = (event, setName, setNameErrorMsg) => {
+exports.nameValidation = (event, setName, setNameErrorMsg, setNameValid) => {
     const nameInputValue = event.target.value.trim();
-    setName(nameInputValue);   
+    setName(nameInputValue);
+    
+    setNameValid(false);
 
     const nameRegExp = /^[a-zA-ZÀ-ÖÙ-öù-ÿ]+([-'\s]{1}[a-zA-ZÀ-ÖÙ-öù-ÿ]+)?$/;
     const minNameLengthRegExp = /.{3,}/;
@@ -103,7 +105,6 @@ exports.nameValidation = (event, setName, setNameErrorMsg) => {
     let testMinNameLength = minNameLengthRegExp.test(nameInputValue);
 
     let msg;
-    let valid = false;
 
     if(nameLength === 0) {
         msg='Ce champ est requis'
@@ -116,8 +117,7 @@ exports.nameValidation = (event, setName, setNameErrorMsg) => {
     }
     else {
         msg='';
-        valid = true;
+        setNameValid(true);
     }
     setNameErrorMsg(msg);
-    return valid;
 }

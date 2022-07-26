@@ -14,7 +14,9 @@ const Login = () => {
                 <div>
                     <img src={logo} alt='logo de Groupomania' className='logo' />
                 </div>
-                {isSignup ? <Signup /> : <Signin />}
+
+                {isSignup ? <Signup isSignup={isSignup} setIsSignup={setIsSignup}/> : <Signin />}
+                
                 <FormBottom alreadyOrNot={'Pas encore'} btnDescription={`S'inscrire`} isSignup={isSignup} setIsSignup={setIsSignup}/>
             </div>
         </main>
