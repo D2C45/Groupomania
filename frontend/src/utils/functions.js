@@ -3,32 +3,35 @@
  * @param {} event l'évènement écouté
  * @param {string} setEmail le state de l'email
  * @param {string} setEmailErrorMsg le state du message d'erreur
- * @returns 
+ * @returns
  */
-exports.emailValidation = (event, setEmail, setEmailErrorMsg, setEmailValid) => {
-    const emailInputValue = event.target.value.trim();
-    setEmail(emailInputValue);
+exports.emailValidation = (
+   event,
+   setEmail,
+   setEmailErrorMsg,
+   setEmailValid
+) => {
+   const emailInputValue = event.target.value.trim()
+   setEmail(emailInputValue)
 
-    setEmailValid(false);
+   setEmailValid(false)
 
-    const emailRegExp = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
-    const emailLength = emailInputValue.length;
+   const emailRegExp = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/
+   const emailLength = emailInputValue.length
 
-    let testEmail = emailRegExp.test(emailInputValue);
+   let testEmail = emailRegExp.test(emailInputValue)
 
-    let msg;
+   let msg
 
-    if (emailLength === 0) {
-        msg='Ce champ est requis'       
-    }
-    else if (!testEmail) {
-        msg="Le format de l'email n'est pas valide (ex: nom@domaine.fr)";
-    }
-    else {
-        msg='';
-        setEmailValid(true);
-    }
-    setEmailErrorMsg(msg);
+   if (emailLength === 0) {
+      msg = 'Ce champ est requis'
+   } else if (!testEmail) {
+      msg = "Le format de l'email n'est pas valide (ex: nom@domaine.fr)"
+   } else {
+      msg = ''
+      setEmailValid(true)
+   }
+   setEmailErrorMsg(msg)
 }
 
 /**
@@ -36,52 +39,51 @@ exports.emailValidation = (event, setEmail, setEmailErrorMsg, setEmailValid) => 
  * @param {} event l'évènement écouté
  * @param {string} setPassword le state du mot de passe
  * @param {string} setPasswordErrorMsg le state du message d'erreur
- * @returns 
+ * @returns
  */
-exports.passwordValidation = (event, setPassword, setPasswordErrorMsg, setPasswordValid) => {
-    const passwordInputValue = event.target.value.trim();
-    setPassword(passwordInputValue);
+exports.passwordValidation = (
+   event,
+   setPassword,
+   setPasswordErrorMsg,
+   setPasswordValid
+) => {
+   const passwordInputValue = event.target.value.trim()
+   setPassword(passwordInputValue)
 
-    setPasswordValid(false);
+   setPasswordValid(false)
 
-    const uppercaseRegExp   = /(?=.*?[A-Z])/;
-    const lowercaseRegExp   = /(?=.*?[a-z])/;
-    const digitsRegExp      = /(?=.*?[0-9])/;
-    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-    const minLengthRegExp   = /.{8,}/;
-    const passwordLength = passwordInputValue.length;
+   const uppercaseRegExp = /(?=.*?[A-Z])/
+   const lowercaseRegExp = /(?=.*?[a-z])/
+   const digitsRegExp = /(?=.*?[0-9])/
+   const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/
+   const minLengthRegExp = /.{8,}/
+   const passwordLength = passwordInputValue.length
 
-    let testUppercase = uppercaseRegExp.test(passwordInputValue);
-    let testLowercase = lowercaseRegExp.test(passwordInputValue);
-    let testDigits = digitsRegExp.test(passwordInputValue);
-    let testSpecialChar = specialCharRegExp.test(passwordInputValue);
-    let testMinLength = minLengthRegExp.test(passwordInputValue);
+   let testUppercase = uppercaseRegExp.test(passwordInputValue)
+   let testLowercase = lowercaseRegExp.test(passwordInputValue)
+   let testDigits = digitsRegExp.test(passwordInputValue)
+   let testSpecialChar = specialCharRegExp.test(passwordInputValue)
+   let testMinLength = minLengthRegExp.test(passwordInputValue)
 
-    let msg;
+   let msg
 
-    if(passwordLength === 0) {
-        msg='Ce champ est requis'
-    }
-    else if(!testUppercase) {
-        msg='Le mot de passe doit contenir au moins une majuscule'
-    }
-    else if(!testLowercase) {
-        msg='Le mot de passe doit contenir au moins une minuscule'
-    }
-    else if(!testDigits) {
-        msg='Le mot de passe doit contenir au moins un chiffre'
-    }
-    else if(!testSpecialChar) {
-        msg='Le mot de passe doit contenir au moins un caractère spécial'
-    }
-    else if(!testMinLength) {
-        msg='Le mot de passe doit contenir au moins 8 caractères'
-    }
-    else {
-        msg='';
-        setPasswordValid(true);
-    }
-    setPasswordErrorMsg(msg);
+   if (passwordLength === 0) {
+      msg = 'Ce champ est requis'
+   } else if (!testUppercase) {
+      msg = 'Le mot de passe doit contenir au moins une majuscule'
+   } else if (!testLowercase) {
+      msg = 'Le mot de passe doit contenir au moins une minuscule'
+   } else if (!testDigits) {
+      msg = 'Le mot de passe doit contenir au moins un chiffre'
+   } else if (!testSpecialChar) {
+      msg = 'Le mot de passe doit contenir au moins un caractère spécial'
+   } else if (!testMinLength) {
+      msg = 'Le mot de passe doit contenir au moins 8 caractères'
+   } else {
+      msg = ''
+      setPasswordValid(true)
+   }
+   setPasswordErrorMsg(msg)
 }
 
 /**
@@ -89,35 +91,32 @@ exports.passwordValidation = (event, setPassword, setPasswordErrorMsg, setPasswo
  * @param {} event l'évènement écouté
  * @param {string} setName le state du nom
  * @param {string} setNameErrorMsg le state du message d'erreur
- * @returns 
+ * @returns
  */
 exports.nameValidation = (event, setName, setNameErrorMsg, setNameValid) => {
-    const nameInputValue = event.target.value.trim();
-    setName(nameInputValue);
-    
-    setNameValid(false);
+   const nameInputValue = event.target.value.trim()
+   setName(nameInputValue)
 
-    const nameRegExp = /^[a-zA-ZÀ-ÖÙ-öù-ÿ]+([-'\s]{1}[a-zA-ZÀ-ÖÙ-öù-ÿ]+)?$/;
-    const minNameLengthRegExp = /.{3,}/;
-    const nameLength = nameInputValue.length;
+   setNameValid(false)
 
-    let testName = nameRegExp.test(nameInputValue);
-    let testMinNameLength = minNameLengthRegExp.test(nameInputValue);
+   const nameRegExp = /^[a-zA-ZÀ-ÖÙ-öù-ÿ]+([-'\s]{1}[a-zA-ZÀ-ÖÙ-öù-ÿ]+)?$/
+   const minNameLengthRegExp = /.{3,}/
+   const nameLength = nameInputValue.length
 
-    let msg;
+   let testName = nameRegExp.test(nameInputValue)
+   let testMinNameLength = minNameLengthRegExp.test(nameInputValue)
 
-    if(nameLength === 0) {
-        msg='Ce champ est requis'
-    }
-    else if(!testMinNameLength) {
-        msg='Ce champ doit contenir au moins 3 caractères'
-    }
-    else if(!testName) {
-        msg='Ce champ ne peut comporter que des caractères alphabétiques'
-    }
-    else {
-        msg='';
-        setNameValid(true);
-    }
-    setNameErrorMsg(msg);
+   let msg
+
+   if (nameLength === 0) {
+      msg = 'Ce champ est requis'
+   } else if (!testMinNameLength) {
+      msg = 'Ce champ doit contenir au moins 3 caractères'
+   } else if (!testName) {
+      msg = 'Ce champ ne peut comporter que des caractères alphabétiques'
+   } else {
+      msg = ''
+      setNameValid(true)
+   }
+   setNameErrorMsg(msg)
 }

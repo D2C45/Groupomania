@@ -11,11 +11,12 @@
 body {
     font-family: 'Lato', sans-serif;
     color: #4E5166;
-    background-color: #FFD7D7
+    background-color: #FFD7D7;
+    margin: auto;
 }
 
-#root {
-    margin: 0 10px;
+.pb10 {
+    padding-bottom: 10px;
 }
 
 .login-container {
@@ -78,8 +79,159 @@ form label {
     width: 50%;
 }
 
+.btn-send {
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #FD2D01;
+    cursor: pointer;
+}
+
+.btn-picture {
+    position: relative;
+    background-color: transparent;
+    color: #FD2D01;
+    font-size: 25px;
+    margin-left: 50px;
+    /* cursor: pointer; */
+}
+
+#image {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 0;
+    top: 6px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+#image::-webkit-file-upload-button {
+    cursor:pointer;
+}
+
 .isSignup-container {
     align-items: center;
     border-top: 1px solid #4E5166;
     margin-top: 20px;
+}
+
+/****************** header ***************/
+
+header {
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+nav {
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    font-size: 25px;
+}
+
+.logo-container {
+    max-width: 230px;
+}
+
+/****************** card ***************/
+
+.card-container {
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card-header {
+    display: flex;
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.card-userinfo {
+    padding-left: 10px;
+}
+
+.card-body p {
+    overflow: wrap;
+    text-align: justify;
+    font-weight: bold;
+}
+
+.post-picture {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+main, section {
+    padding: 0 10px;
+}
+
+.posts-container {
+    max-width: 750px;
+    margin: auto;
+}
+
+.newpost-container {
+    max-width: 750px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#message {
+    border: 2px solid #FFD7D7;
+    border-radius: 20px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-top: 7px;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: bold;
+    resize: none;
+}
+
+.newpost-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.newpost-header {
+    display: flex;
+}
+
+.border {
+    border: 2px solid #FFD7D7;
+    margin-left: 50px;
+}
+
+.author {
+    font-weight: bold;
+    font-size: 16px;
+    color: #4E5166;
+}
+
+.date {
+    font-size: 14px;
 }
