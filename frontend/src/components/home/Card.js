@@ -32,6 +32,27 @@ const Card = ({ post, changes, setChanges }) => {
          })
    }
 
+   const likePost = () => {
+      axios({
+         method: 'put',
+         url: `${process.env.REACT_APP_API_URL}api/posts/${post._id}/like`,
+         withCredentials: true,
+         headers: {
+            Authorization: `Bearer ${
+               JSON.parse(localStorage.getItem('auth')).token
+            }`,
+         },
+         data: { userId: userData._id },
+      })
+         .then((response) => {
+            console.log(response)
+            setChanges(!changes)
+         })
+         .catch(function (error) {
+            console.log(error)
+         })
+   }
+
    // Récupère les informations de la personne qui a créé le post
    useEffect(() => {
       axios({
@@ -109,8 +130,23 @@ const Card = ({ post, changes, setChanges }) => {
             )}
 
             <div className="card-footer">
-               <i className="far fa-heart"></i>
-               <i className="far fa-comment"></i>
+               <div className="like-container">
+                  <button className="footer-btn" onClick={likePost}>
+                     {post.likersId.includes(userData._id) ? (
+                        <i className="fas fa-heart orange"></i>
+                     ) : (
+                        <i className="far fa-heart"></i>
+                     )}
+                  </button>
+                  <p>{post.likersId.length}</p>
+               </div>
+
+               <div className="comment-container">
+                  <button className="footer-btn">
+                     <i className="far fa-comment"></i>
+                  </button>
+                  <p>{post.comments.length}</p>
+               </div>
             </div>
          </li>
       </ul>

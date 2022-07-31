@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
+import { UserContext } from '../../utils/context'
 
 const Newpost = ({ changes, setChanges }) => {
+   const { userData } = useContext(UserContext)
+
    const [message, setMessage] = useState('')
    const [picture, setPicture] = useState('')
    const [file, setFile] = useState('')
@@ -62,8 +65,12 @@ const Newpost = ({ changes, setChanges }) => {
       <div className="card-container newpost-container">
          <div className="newpost-header">
             <img
-               src={require('../../assets/sunset.jpg')}
-               alt="avatar"
+               src={
+                  userData.imageUrl === ''
+                     ? require('../../assets/default-avatar.png')
+                     : userData.imageUrl
+               }
+               alt="avatar de la personne connectée"
                className="avatar"
             />
             <textarea

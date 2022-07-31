@@ -167,6 +167,37 @@ nav ul {
     display: flex;
 }
 
+.card-footer {
+    border-top: 2px solid #4E5166;
+    border-bottom: 2px solid #4E5166;
+    padding: 10px 0;
+    display: flex;
+}
+
+.card-footer i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
+.like-container, .comment-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.footer-btn {
+    background-color: white;
+}
+
+.orange {
+    color: #FD2D01;
+}
+
+.comment-container {
+    margin-left: 50px;
+}
+
 .avatar {
     height: 40px;
     width: 40px;
@@ -243,6 +274,7 @@ main, section {
 .newpost-footer {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .newpost-header {

@@ -5,7 +5,7 @@ export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
    const [user, setUser] = useState(JSON.parse(localStorage.getItem('auth')))
-   const [userData, setUserData] = useState()
+   const [userData, setUserData] = useState({})
    // const [posts, setPosts] = useState([])
    // const [refreshPage, setRefreshPage] = useState(true)
    // const [auth, setAuth] = useState(null)
