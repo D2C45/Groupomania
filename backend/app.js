@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 
 // Configure l'environnement de variables
 dotenv.config();
@@ -28,17 +29,29 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
   .catch(() => console.log('Connection to MongoDB failed'));
 
 // Définition des headers de la réponse
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
+//     res.setHeader('preflightContinue', false);
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+//     next();
+//   });
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+  'allowedHeaders': 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization',
+  // 'exposedHeaders': ['sessionId'],
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}
+app.use(cors(corsOptions));
 
 // Limite le nombre de requêtes
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	max: 100000, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
@@ -47,7 +60,7 @@ app.use(limiter)
 
 
 // Sécurisation des headers avec helmet
-app.use(helmet({ crossOriginResourcePolicy: { policy: "same-site" } }));
+// app.use(helmet({ crossOriginResourcePolicy: { policy: "same-site" } }));
 
 // Gestion des requêtes images par express de manière statique
 app.use('/images', express.static(path.join(__dirname, 'images')));

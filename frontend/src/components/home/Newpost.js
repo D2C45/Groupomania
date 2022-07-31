@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import axios from 'axios'
 
-const Newpost = () => {
+const Newpost = ({ changes, setChanges }) => {
    const [message, setMessage] = useState('')
    const [picture, setPicture] = useState('')
    const [file, setFile] = useState('')
@@ -11,12 +11,12 @@ const Newpost = () => {
    const sendPost = () => {
       if (message || picture) {
          const data = new FormData()
-         const post = {
+         const content = {
             postUserId: JSON.parse(localStorage.getItem('auth')).userId,
             message: message,
          }
-         const postString = JSON.stringify(post)
-         data.append('post', postString)
+         const contentString = JSON.stringify(content)
+         data.append('content', contentString)
          if (file) {
             data.append('image', file)
          }
@@ -24,6 +24,7 @@ const Newpost = () => {
          axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}api/posts`,
+            withCredentials: true,
             headers: {
                Authorization: `Bearer ${
                   JSON.parse(localStorage.getItem('auth')).token
@@ -33,6 +34,7 @@ const Newpost = () => {
          })
             .then((response) => {
                console.log(response)
+               setChanges(!changes)
             })
             .catch(function (error) {
                console.log(error)
@@ -67,6 +69,7 @@ const Newpost = () => {
             <textarea
                name="message"
                id="message"
+               className="message"
                placeholder="Ecrivez quelque chose..."
                maxLength={500}
                value={message}
@@ -76,7 +79,7 @@ const Newpost = () => {
 
          {message || picture ? (
             <div className="card-container border">
-               <div className="card-header pb10">
+               <div className="card-user pb10">
                   <img
                      src={require('../../assets/sunset.jpg')}
                      alt="avatar"
@@ -99,11 +102,12 @@ const Newpost = () => {
 
          <div className="newpost-footer">
             <div className="btn-picture">
-               <i className="far fa-image"></i>
+               <i className="far fa-file-image"></i>
                <input
                   type="file"
                   id="image"
                   name="image"
+                  className="upload-img"
                   accept=".jpg, .jpeg, .png"
                   ref={ref}
                   onChange={(e) => uploadPicture(e)}

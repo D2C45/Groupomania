@@ -8,6 +8,9 @@ const postSchema = mongoose.Schema({
     imageUrl: {type: String, default: ''},
     likersId: {type: [String], default: []},
     comments: {type: [{ commentUserId: String, text: String, timestamp: Number }], default: []}
+},
+{
+    timestamps: true
 })
 
 // Exporte le schéma en tant que modèle mongoose nommé Post

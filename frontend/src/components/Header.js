@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../assets/logo.png'
+import { UserContext } from '../utils/context'
 
 const Header = () => {
+   const { logout } = useContext(UserContext)
+
    return (
       <header>
          <nav>
@@ -16,7 +19,7 @@ const Header = () => {
                   <i className="fas fa-users"></i>
                </li>
                <li>
-                  <i className="fas fa-sign-out-alt"></i>
+                  <i className="fas fa-sign-out-alt" onClick={logout}></i>
                </li>
             </ul>
          </nav>

@@ -5,7 +5,7 @@
  * @param {string} setEmailErrorMsg le state du message d'erreur
  * @returns
  */
-exports.emailValidation = (
+export const emailValidation = (
    event,
    setEmail,
    setEmailErrorMsg,
@@ -41,7 +41,7 @@ exports.emailValidation = (
  * @param {string} setPasswordErrorMsg le state du message d'erreur
  * @returns
  */
-exports.passwordValidation = (
+export const passwordValidation = (
    event,
    setPassword,
    setPasswordErrorMsg,
@@ -93,7 +93,12 @@ exports.passwordValidation = (
  * @param {string} setNameErrorMsg le state du message d'erreur
  * @returns
  */
-exports.nameValidation = (event, setName, setNameErrorMsg, setNameValid) => {
+export const nameValidation = (
+   event,
+   setName,
+   setNameErrorMsg,
+   setNameValid
+) => {
    const nameInputValue = event.target.value.trim()
    setName(nameInputValue)
 
@@ -119,4 +124,22 @@ exports.nameValidation = (event, setName, setNameErrorMsg, setNameValid) => {
       setNameValid(true)
    }
    setNameErrorMsg(msg)
+}
+
+/**
+ * Converti le format de la date
+ * @param {date} num la date récupéré dans la base de données
+ * @returns la date au format d'affichage requis
+ */
+export const dateFormat = (date) => {
+   let options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+   }
+   return new Date(date).toLocaleDateString('fr-FR', options)
 }

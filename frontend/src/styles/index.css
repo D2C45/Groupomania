@@ -15,6 +15,10 @@ body {
     margin: auto;
 }
 
+i {
+    cursor: pointer;
+}
+
 .pb10 {
     padding-bottom: 10px;
 }
@@ -99,7 +103,7 @@ form label {
     /* cursor: pointer; */
 }
 
-#image {
+.upload-img {
     position: absolute;
     width: 25px;
     height: 25px;
@@ -109,7 +113,7 @@ form label {
     opacity: 0;
 }
 
-#image::-webkit-file-upload-button {
+.upload-img::-webkit-file-upload-button {
     cursor:pointer;
 }
 
@@ -156,6 +160,11 @@ nav ul {
 
 .card-header {
     display: flex;
+    justify-content: space-between;
+}
+
+.card-user {
+    display: flex;
 }
 
 .avatar {
@@ -163,10 +172,16 @@ nav ul {
     width: 40px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: top;
 }
 
 .card-userinfo {
     padding-left: 10px;
+}
+
+.update i {
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .card-body p {
@@ -197,7 +212,7 @@ main, section {
     margin-bottom: 10px;
 }
 
-#message {
+.message {
     border: 2px solid #FFD7D7;
     border-radius: 20px;
     width: 100%;
@@ -210,6 +225,19 @@ main, section {
     font-size: 16px;
     font-weight: bold;
     resize: none;
+}
+
+.message-large {
+    height: 150px;
+}
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-form .btn-picture {
+    margin-left: 10px;
 }
 
 .newpost-footer {
@@ -233,5 +261,15 @@ main, section {
 }
 
 .date {
-    font-size: 14px;
+    font-size: 13px;
+}
+
+.delete-picture-container {
+    display: flex;
+}
+
+.update-form .fa-times-circle {
+    font-size: 20px;
+    color: #FD2D01;
+    cursor: pointer;
 }

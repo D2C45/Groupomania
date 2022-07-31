@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import FormInput from './FormInput'
 import Button from './Button'
+import { emailValidation, passwordValidation } from '../../utils/functions'
+import { UserContext } from '../../utils/context'
 
-const Signin = ({ setToken }) => {
+const Signin = () => {
+   const { login } = useContext(UserContext)
+
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
 
@@ -13,11 +17,7 @@ const Signin = ({ setToken }) => {
    const [emailValid, setEmailValid] = useState(false)
    const [passwordValid, setPasswordValid] = useState(false)
 
-   const emailValidation = require('../../utils/functions').emailValidation
-   const passwordValidation =
-      require('../../utils/functions').passwordValidation
-
-   const login = (e) => {
+   const sigin = (e) => {
       e.preventDefault()
 
       if (email.length === 0) {
@@ -28,14 +28,14 @@ const Signin = ({ setToken }) => {
          axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}api/user/login`,
+            withCredentials: true,
             data: {
                email,
                password,
             },
          })
             .then((response) => {
-               localStorage.setItem('auth', JSON.stringify(response.data))
-               setToken(response.data.token)
+               login(response.data)
             })
             .catch(function (error) {
                console.log(error)
@@ -71,7 +71,7 @@ const Signin = ({ setToken }) => {
             }
          />
 
-         <Button btnName={'Se connecter'} onClick={login} />
+         <Button btnName={'Se connecter'} onClick={sigin} />
       </form>
    )
 }

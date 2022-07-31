@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../components/Header'
 
-const Error = () => {
+const Users = () => {
    return (
       <div>
          <Header />
-         page erreur
+         page utilisateurs
       </div>
    )
 }
 
-export default Error
+export default Users

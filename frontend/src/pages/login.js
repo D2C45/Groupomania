@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Signup from '../components/login/SignupForm'
 import Signin from '../components/login/SigninForm'
 
-const Login = ({ setToken }) => {
+const Login = () => {
    const [isSignup, setIsSignup] = useState(false)
 
    return (
@@ -18,7 +18,7 @@ const Login = ({ setToken }) => {
             {isSignup ? (
                <Signup isSignup={isSignup} setIsSignup={setIsSignup} />
             ) : (
-               <Signin setToken={setToken} />
+               <Signin />
             )}
 
             <FormBottom

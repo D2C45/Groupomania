@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import FormInput from './FormInput'
 import Button from './Button'
 import axios from 'axios'
+import {
+   nameValidation,
+   emailValidation,
+   passwordValidation,
+} from '../../utils/functions'
 
 const Signup = ({ isSignup, setIsSignup }) => {
    const [lastName, setLastName] = useState('')
@@ -18,11 +23,6 @@ const Signup = ({ isSignup, setIsSignup }) => {
    const [firstNameValid, setFirstNameValid] = useState(false)
    const [emailValid, setEmailValid] = useState(false)
    const [passwordValid, setPasswordValid] = useState(false)
-
-   const nameValidation = require('../../utils/functions').nameValidation
-   const emailValidation = require('../../utils/functions').emailValidation
-   const passwordValidation =
-      require('../../utils/functions').passwordValidation
 
    const signup = (e) => {
       e.preventDefault()
@@ -44,6 +44,7 @@ const Signup = ({ isSignup, setIsSignup }) => {
          axios({
             method: 'post',
             url: `${process.env.REACT_APP_API_URL}api/user/signup`,
+            withCredentials: true,
             data: {
                firstName,
                lastName,

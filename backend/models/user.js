@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     lastName: {type: String, required: true, minlength: 3, trim: true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
-    imageUrl: {type: String, default: '../../frontend/img/default-avatar.png'},
+    imageUrl: {type: String, default: ''},
     description: {type: String, default: '', maxlength: 1000, trim: true},
     isAdmin: {type: Boolean, default: false}
 },
