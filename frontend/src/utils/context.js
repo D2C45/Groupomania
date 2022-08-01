@@ -6,9 +6,6 @@ export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
    const [user, setUser] = useState(JSON.parse(localStorage.getItem('auth')))
    const [userData, setUserData] = useState({})
-   // const [posts, setPosts] = useState([])
-   // const [refreshPage, setRefreshPage] = useState(true)
-   // const [auth, setAuth] = useState(null)
 
    useEffect(() => {
       if (JSON.parse(localStorage.getItem('auth')) !== null) {
@@ -22,8 +19,6 @@ export const UserProvider = ({ children }) => {
          })
             .then((response) => {
                setUserData(response.data)
-               // a suprimer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-               console.log(response.data)
             })
             .catch(function (error) {
                console.log(error)

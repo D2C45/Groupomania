@@ -3,6 +3,7 @@ import axios from 'axios'
 import { dateFormat } from '../../utils/functions'
 import UpdatePost from './UpdatePost'
 import { UserContext } from '../../utils/context'
+import Comment from './Comment'
 
 const Card = ({ post, changes, setChanges }) => {
    // Information de l'utilisateur connecté
@@ -11,6 +12,8 @@ const Card = ({ post, changes, setChanges }) => {
    const [posterData, setPosterData] = useState('')
    // Toggle pour la mise à jour du post
    const [update, setUpdate] = useState(false)
+   // Toggle pour ouvrir la section commentaire
+   const [comment, setComment] = useState(false)
 
    const deletePost = () => {
       axios({
@@ -92,7 +95,7 @@ const Card = ({ post, changes, setChanges }) => {
                   <div className="card-userinfo">
                      <a href="/" className="author">
                         {posterData.firstName} {posterData.lastName}{' '}
-                        {posterData.isAdmin && '(administrateur)'}
+                        {posterData.isAdmin && '(Admin)'}
                      </a>
                      <p className="date">{dateFormat(post.createdAt)}</p>
                   </div>
@@ -130,7 +133,7 @@ const Card = ({ post, changes, setChanges }) => {
             )}
 
             <div className="card-footer">
-               <div className="like-container">
+               <div className="btn-like-container">
                   <button className="footer-btn" onClick={likePost}>
                      {post.likersId.includes(userData._id) ? (
                         <i className="fas fa-heart orange"></i>
@@ -141,13 +144,19 @@ const Card = ({ post, changes, setChanges }) => {
                   <p>{post.likersId.length}</p>
                </div>
 
-               <div className="comment-container">
-                  <button className="footer-btn">
+               <div className="btn-comment-container">
+                  <button
+                     className="footer-btn"
+                     onClick={() => setComment(!comment)}
+                  >
                      <i className="far fa-comment"></i>
                   </button>
                   <p>{post.comments.length}</p>
                </div>
             </div>
+            {comment ? (
+               <Comment post={post} changes={changes} setChanges={setChanges} />
+            ) : null}
          </li>
       </ul>
    )
