@@ -17,7 +17,7 @@ exports.modifyComment = (req,res) => {
     Post.findOne({"comments._id": req.params.id})
         .then (post => {
             let commentToModify = post.comments.find(comment => comment._id == req.params.id);
-            if (commentToModify.commentUserId == req.token.userId) {
+            if (commentToModify.commentUserId == req.token.userId || req.token.isAdmin) {
                 Post.updateOne({"comments._id": req.params.id},{$set: {"comments.$.text": req.body.text}})
                     .then (() => res.status(200).json({ message: 'Comment updated'})) // Requête ok
                     .catch(error => res.status(400).json({ error }));   // Mauvaise requête
@@ -33,7 +33,7 @@ exports.deleteComment = (req,res) => {
     Post.findOne({"comments._id": req.params.id})
         .then (post => {
             let commentToDelete = post.comments.find(comment => comment._id == req.params.id);
-            if (commentToDelete.commentUserId == req.token.userId) {
+            if (commentToDelete.commentUserId == req.token.userId || req.token.isAdmin) {
                 Post.updateOne({"comments._id": req.params.id},{$pull: {comments: commentToDelete}})
                     .then (() => res.status(200).json({ message: 'Comment deleted'})) // Requête ok
                     .catch(error => res.status(400).json({ error }));   // Mauvaise requête

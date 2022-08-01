@@ -56,7 +56,7 @@ exports.modifyPost = (req, res) => {
     Post.findOne({ _id: req.params.id })                 // Recherche du post avec l'id
       .then (post => {
 
-        if (post.postUserId == req.token.userId) {           // Test si le userId du token correspond à celui du post à modifier
+        if (post.postUserId == req.token.userId || req.token.isAdmin) {           // Test si le userId du token correspond à celui du post à modifier ou si c'est le token d'un administrateur
 
           if (req.file) {                                 // Test si présence d'un fichier dans la requête
               let filename = post.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
@@ -91,7 +91,7 @@ exports.modifyPost = (req, res) => {
 exports.deletePost = (req, res) => {
   Post.findOne({_id: req.params.id})                   // Recherche du post avec l'id
     .then (post => {
-      if (post.postUserId == req.token.userId) {           // Test si le userId du token correspond à celui du post à modifier
+      if (post.postUserId == req.token.userId || req.token.isAdmin) {           // Test si le userId du token correspond à celui du post à modifier ou si c'est le token d'un administrateur
         let filename = post.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
         fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
           Post.deleteOne({_id: req.params.id})                 // Suppression du post

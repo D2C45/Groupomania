@@ -66,7 +66,7 @@ exports.login = (req, res) => {
             res.status(200).json({                // Sinon renvoit un objet json avec l'userId et un token d'authentification
               userId: user._id,
               token: jwt.sign(                    // Création du token avec jsonwebtoken à partir de l'userId avec une clé d'encodage et un délai d'expiration
-                {userId: user._id},
+                {userId: user._id, isAdmin: user.isAdmin},
                 process.env.TOKEN_PASSWORD,
                 {expiresIn: '24h'}
               )
@@ -96,7 +96,7 @@ exports.modifyUser = (req, res) => {
     User.findOne({ _id: req.params.id })                 // Recherche du user avec l'id
       .then (user => {
 
-        if (user._id == req.token.userId) {           // Test si le userId du token correspond à celui du user à modifier
+        if (user._id == req.token.userId || req.token.isAdmin) {           // Test si le userId du token correspond à celui du user à modifier ou si c'est le token d'un administrateur
 
             if (req.file) {                                 // Test si présence d'un fichier dans la requête
 
@@ -145,7 +145,7 @@ exports.modifyUser = (req, res) => {
 exports.deleteUser = (req, res) => {
     User.findOne({_id: req.params.id})                   // Recherche du user avec l'id
     .then (user => {
-      if (user._id == req.token.userId) {           // Test si le userId du token correspond à celui du user à modifier
+      if (user._id == req.token.userId || req.token.isAdmin) {           // Test si le userId du token correspond à celui du user à modifier ou si c'est le token d'un administrateur
         let filename = user.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
         fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
           User.deleteOne({_id: req.params.id})                 // Suppression du user
