@@ -80,7 +80,7 @@ exports.login = (req, res) => {
 // Récupération de tous les utilisateurs
 exports.getAllUsers = (req, res) => {
     User.find()
-      .then(users => res.status(200).json(users))         // Requête ok
+      .then(users => res.status(200).json(users.sort((a,b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))))         // Requête ok avec tri par date de création
       .catch(error => res.status(400).json({ error }));     // Mauvaise requête
 };
 

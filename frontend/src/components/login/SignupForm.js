@@ -73,7 +73,7 @@ const Signup = ({ isSignup, setIsSignup }) => {
    }
 
    return (
-      <form method="post">
+      <form method="post" onClick={(e) => signup(e)}>
          <FormInput
             inputName={'lastName'}
             inputType={'text'}
@@ -131,7 +131,7 @@ const Signup = ({ isSignup, setIsSignup }) => {
             }
          />
 
-         <Button btnName={`S'inscrire`} onClick={signup} />
+         <Button btnName={`S'inscrire`} />
       </form>
    )
 }

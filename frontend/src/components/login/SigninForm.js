@@ -17,7 +17,7 @@ const Signin = () => {
    const [emailValid, setEmailValid] = useState(false)
    const [passwordValid, setPasswordValid] = useState(false)
 
-   const sigin = (e) => {
+   const signin = (e) => {
       e.preventDefault()
 
       if (email.length === 0) {
@@ -45,7 +45,7 @@ const Signin = () => {
    }
 
    return (
-      <form method="post">
+      <form method="post" onSubmit={(e) => signin(e)}>
          <FormInput
             inputName={'email'}
             inputHolder={'Email'}
@@ -71,7 +71,7 @@ const Signin = () => {
             }
          />
 
-         <Button btnName={'Se connecter'} onClick={sigin} />
+         <Button btnName={'Se connecter'} />
       </form>
    )
 }

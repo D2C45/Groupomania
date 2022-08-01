@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     imageUrl: {type: String, default: ''},
-    description: {type: String, default: '', maxlength: 1000, trim: true},
+    description: {type: String, default: '', maxlength: 100, trim: true},
     isAdmin: {type: Boolean, default: false}
 },
 {

@@ -9,6 +9,7 @@ const Home = () => {
    // switch pour relancer la requête si il ya des changements dans le fil des posts
    const [changes, setChanges] = useState(false)
 
+   // Récupère tous les posts
    useEffect(() => {
       axios({
          method: 'get',

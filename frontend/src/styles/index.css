@@ -320,3 +320,16 @@ section {
 .comment-container > p {
    margin-left: 50px;
 }
+
+.user-card {
+   display: flex;
+}
+
+.avatar-lg {
+   height: 100px;
+   width: 100px;
+}
+
+.user-description {
+   margin-top: 15px;
+}
