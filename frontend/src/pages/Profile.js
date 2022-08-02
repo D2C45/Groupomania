@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import axios from 'axios'
-import UserCard from '../components/users/Card'
+import UserCard from '../components/users/UserCard'
 import Card from '../components/home/Card'
 
 const Profile = () => {
@@ -11,7 +11,7 @@ const Profile = () => {
    const currentUrl = new URL(currentUrlString)
    // variable qui récupère l'id de l'url
    const profilId = currentUrl.searchParams.get('id')
-
+   // Données de l'utilisateur
    const [user, setUser] = useState('')
    // switch pour relancer la requête si il ya des changements dans le profil
    const [changes, setChanges] = useState(false)
@@ -63,21 +63,30 @@ const Profile = () => {
    return (
       <>
          <Header />
-         <main className="posts-container">
-            <UserCard user={user} setChanges={setChanges} />
-            <ul className="posts-container">
-               {userPosts &&
-                  userPosts.map((post) => {
-                     return (
-                        <Card
-                           post={post}
-                           key={post._id}
-                           changes={changes}
-                           setChanges={setChanges}
-                        />
-                     )
-                  })}
-            </ul>
+         <main>
+            {user ? (
+               <ul className="posts-container">
+                  <UserCard
+                     user={user}
+                     changes={changes}
+                     setChanges={setChanges}
+                     userPosts={userPosts}
+                  />
+                  {userPosts &&
+                     userPosts.map((post) => {
+                        return (
+                           <Card
+                              post={post}
+                              key={post._id}
+                              changes={changes}
+                              setChanges={setChanges}
+                           />
+                        )
+                     })}
+               </ul>
+            ) : (
+               <p>cette page n'existe pas</p>
+            )}
          </main>
       </>
    )

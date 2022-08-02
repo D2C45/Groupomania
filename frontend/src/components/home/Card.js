@@ -74,7 +74,7 @@ const Card = ({ post, changes, setChanges }) => {
          .catch(function (error) {
             console.log(error)
          })
-   }, [post.postUserId])
+   }, [post.postUserId, changes])
 
    return (
       <li className="card-container">
@@ -103,7 +103,9 @@ const Card = ({ post, changes, setChanges }) => {
                <div className="update">
                   <i
                      className="fas fa-edit"
-                     onClick={() => setUpdate(true)}
+                     onClick={() =>
+                        update ? setUpdate(false) : setUpdate(true)
+                     }
                   ></i>
                   <i className="fas fa-trash" onClick={deletePost}></i>
                </div>

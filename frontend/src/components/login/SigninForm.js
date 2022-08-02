@@ -4,9 +4,11 @@ import FormInput from './FormInput'
 import Button from './Button'
 import { emailValidation, passwordValidation } from '../../utils/functions'
 import { UserContext } from '../../utils/context'
+import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
    const { login } = useContext(UserContext)
+   const navigate = useNavigate()
 
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
@@ -36,6 +38,7 @@ const Signin = () => {
          })
             .then((response) => {
                login(response.data)
+               navigate('/')
             })
             .catch(function (error) {
                console.log(error)

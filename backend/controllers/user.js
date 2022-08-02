@@ -85,7 +85,7 @@ exports.getAllUsers = (req, res) => {
 };
 
 // Récupération d'un utilisateur
-exports.getOneUser = (req, res) => {
+exports.getuser = (req, res) => {
     User.findOne({ _id: req.params.id })
       .then(user => res.status(200).json(user))         // Requête ok
       .catch(error => res.status(404).json({ error }));   // Ressource non trouvée
@@ -100,7 +100,7 @@ exports.modifyUser = (req, res) => {
 
             if (req.file) {                                 // Test si présence d'un fichier dans la requête
 
-                if (user.imageUrl !== '../../frontend/img/default-avatar.png') {    // Test si l'image est différente de celle créée par défaut pour la retrouver et la supprimer
+                if (user.imageUrl !== '') {    // Test si l'image est différente de celle créée par défaut pour la retrouver et la supprimer
 
                     let filename = user.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
                     fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images
@@ -125,10 +125,22 @@ exports.modifyUser = (req, res) => {
             
 
             } else {                                                                          // Si pas de fichier dans la requête
-            User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })    // Rempacement par le corps de la requête
-              .then(() => res.status(200).json({ message: 'User modified'})) // Requête ok
-              .catch(error => res.status(400).json({ error }));               // Mauvaise requête
-          }
+
+              if (user.imageUrl !== '' && JSON.parse(req.body.user).imageUrl == '') {    // Test si l'image est différente de celle créée par défaut, et l'url de l'image envoyée est vide, pour la retrouver et la supprimer
+                let filename = user.imageUrl.split('/images/')[1];   // Récupération du nom du fichier
+                fs.unlink(`images/${filename}`, () => {                 // Suppression du fichier dans le dossier images                    
+                    User.updateOne({ _id: req.params.id }, { ...JSON.parse(req.body.user), _id: req.params.id })    // Rempacement par le corps de la requête
+                      .then(() => res.status(200).json({ message: 'User modified et suppression photo'})) // Requête ok
+                      .catch(error => res.status(400).json({ error }));               // Mauvaise requête
+                })
+
+              } else {                                                // Si l'image n'est pas celle par défaut
+                User.updateOne({ _id: req.params.id }, { ...JSON.parse(req.body.user), _id: req.params.id })    // Rempacement par le corps de la requête
+                  .then(() => res.status(200).json({ message: 'User modified et pas supression'})) // Requête ok
+                  .catch(error => res.status(400).json({ error }));               // Mauvaise requête
+              }
+
+            }
 
         } else {                                  // Si l'utilisateur n'est pas celui qui a créé le user
           if (req.file) {                         // Si présence d'un fichier dans la requête

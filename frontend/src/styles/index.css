@@ -15,6 +15,10 @@ body {
    margin: auto;
 }
 
+a:-webkit-any-link {
+   color: inherit;
+}
+
 i {
    cursor: pointer;
 }
@@ -307,7 +311,7 @@ section {
    display: flex;
 }
 
-.update-form .fa-times-circle {
+.fa-times-circle {
    font-size: 20px;
    color: #fd2d01;
    cursor: pointer;
@@ -332,4 +336,9 @@ section {
 
 .user-description {
    margin-top: 15px;
+   padding-left: 10px;
+}
+
+.usercard-header {
+   width: 100%;
 }
