@@ -115,13 +115,16 @@ const Card = ({ post, changes, setChanges }) => {
             </div>
             {(userData._id === post.postUserId || userData.isAdmin) && (
                <div className="update">
-                  <i
-                     className="fas fa-edit"
+                  <button
                      onClick={() =>
                         update ? setUpdate(false) : setUpdate(true)
                      }
-                  ></i>
-                  <i className="fas fa-trash" onClick={deletePost}></i>
+                  >
+                     <i className="fas fa-edit"></i>
+                  </button>
+                  <button onClick={deletePost}>
+                     <i className="fas fa-trash"></i>
+                  </button>
                </div>
             )}
          </div>

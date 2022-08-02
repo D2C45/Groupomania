@@ -71,24 +71,42 @@ const UpdatePost = ({ post, setUpdate, changes, setChanges }) => {
                            className="post-picture"
                         />
                      </div>
-                     <i
-                        className="far fa-times-circle"
-                        onClick={deletePicture}
-                     ></i>
+                     <div>
+                        <button onClick={deletePicture}>
+                           <i className="far fa-times-circle"></i>
+                        </button>
+                     </div>
                   </div>
                ) : null}
             </div>
          </div>
          <div className="newpost-footer">
             <div className="btn-picture">
-               <i className="far fa-file-image"></i>
+               <label
+                  htmlFor={`image-${post._id}`}
+                  id={`image-label-${post._id}`}
+                  className="upload-img-label"
+               >
+                  <i className="far fa-file-image"></i>
+               </label>
                <input
                   type="file"
+                  id={`image-${post._id}`}
                   name="image"
                   className="upload-img"
                   accept=".jpg, .jpeg, .png"
                   ref={ref}
                   onChange={(e) => changePicture(e)}
+                  onFocus={(e) =>
+                     document
+                        .getElementById(`image-label-${post._id}`)
+                        .classList.add('rounded')
+                  }
+                  onBlur={(e) =>
+                     document
+                        .getElementById(`image-label-${post._id}`)
+                        .classList.remove('rounded')
+                  }
                />
             </div>
             <div>

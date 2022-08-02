@@ -1,3 +1,4 @@
+/****************** general ***************/
 * {
    box-sizing: border-box;
    margin: 0;
@@ -5,6 +6,9 @@
    list-style-type: none;
    outline: none;
    border: none;
+}
+
+a {
    text-decoration: none;
 }
 
@@ -19,14 +23,15 @@ a:-webkit-any-link {
    color: inherit;
 }
 
-i {
+/* i {
    cursor: pointer;
-}
+} */
 
 .pb10 {
    padding-bottom: 10px;
 }
 
+/****************** login ***************/
 .login-container {
    margin: 80px auto;
    max-width: 400px;
@@ -41,6 +46,10 @@ i {
    padding: 10px;
 }
 
+.logo {
+   max-width: 100%;
+}
+
 .input-container {
    display: flex;
    flex-direction: column;
@@ -53,10 +62,6 @@ i {
    font-weight: bold;
 }
 
-.logo {
-   max-width: 100%;
-}
-
 form input {
    border: 1px solid #ffd7d7;
    height: 52px;
@@ -66,10 +71,14 @@ form input {
    padding: 16px;
 }
 
+form input:focus {
+   border: 2px solid #fd2d01;
+}
+
 form label {
    font-weight: bold;
 }
-
+/****************** button login ***************/
 .btn {
    width: 100%;
    height: 52px;
@@ -80,6 +89,14 @@ form label {
    font-size: 20px;
    font-weight: bold;
    cursor: pointer;
+   border: 2px solid transparent;
+}
+
+.btn:focus,
+.btn:hover {
+   background-color: #fff;
+   color: #fd2d01;
+   border-color: #fd2d01;
 }
 
 .btn-small {
@@ -87,6 +104,13 @@ form label {
    width: 50%;
 }
 
+.btn-small:focus,
+.btn-small:hover {
+   background-color: #fff;
+   color: #4e5166;
+   border-color: #4e5166;
+}
+/****************** button home ***************/
 .btn-send {
    padding: 10px;
    margin-left: 10px;
@@ -95,7 +119,15 @@ form label {
    font-weight: bold;
    color: #ffffff;
    background-color: #fd2d01;
+   border: 2px solid transparent;
    cursor: pointer;
+}
+
+.btn-send:hover,
+.btn-send:focus {
+   background-color: #fff;
+   color: #fd2d01;
+   border-color: #fd2d01;
 }
 
 .btn-picture {
@@ -108,12 +140,22 @@ form label {
 
 .upload-img {
    position: absolute;
-   width: 25px;
-   height: 25px;
+   width: 100%;
+   height: 100%;
    left: 0;
-   top: 6px;
+   top: -6px;
    cursor: pointer;
    opacity: 0;
+}
+
+.upload-img-label {
+   border: 2px solid transparent;
+   border-radius: 50%;
+   padding: 3px 10px;
+}
+
+.rounded {
+   border-color: #fd2d01;
 }
 
 .upload-img::-webkit-file-upload-button {
@@ -148,8 +190,25 @@ nav ul {
    font-size: 25px;
 }
 
+nav i {
+   border: 2px solid transparent;
+   border-radius: 50%;
+   padding: 6px;
+}
+
+nav .logo {
+   border: 2px solid transparent;
+   border-radius: 10px;
+}
+
+nav a:focus i,
+nav a:focus .logo {
+   border-color: #4e5166;
+}
+
 .logo-container {
    max-width: 230px;
+   margin-top: 5px;
 }
 
 /****************** card ***************/
@@ -191,12 +250,21 @@ nav ul {
 .comment-header .footer-btn {
    margin-left: 10px;
    margin-right: 10px;
+   margin-top: 4px;
 }
 
 .footer-btn {
    background-color: white;
    font-size: 20px;
    margin-right: 5px;
+   cursor: pointer;
+   border: 2px solid transparent;
+   border-radius: 50%;
+   padding: 5px 5px 2px 4px;
+}
+
+.footer-btn:focus {
+   border-color: #fd2d01;
 }
 
 .orange {
@@ -210,18 +278,37 @@ nav ul {
 .avatar {
    height: 40px;
    width: 40px;
+   border: 2px solid transparent;
    border-radius: 50%;
    object-fit: cover;
    object-position: top;
+}
+
+.card-user a:focus .avatar {
+   border-color: #fd2d01;
+}
+
+.avatar-lg {
+   height: 100px;
+   width: 100px;
 }
 
 .card-userinfo {
    padding-left: 10px;
 }
 
-.update i {
-   margin-left: 10px;
+.update button {
+   background-color: #fff;
    cursor: pointer;
+   margin-left: 5px;
+   border: 2px solid transparent;
+   border-radius: 50%;
+   padding: 5px;
+   font-size: 16px;
+}
+
+.update button:focus {
+   border-color: #fd2d01;
 }
 
 .card-body p {
@@ -268,6 +355,10 @@ section {
    resize: none;
 }
 
+.message:focus {
+   border-color: #fd2d01;
+}
+
 .message-large {
    height: 150px;
 }
@@ -302,6 +393,10 @@ section {
    color: #4e5166;
 }
 
+.author:focus {
+   text-decoration: underline 2px solid #fd2d01;
+}
+
 .date {
    font-size: 13px;
 }
@@ -310,10 +405,19 @@ section {
    display: flex;
 }
 
-.fa-times-circle {
+.delete-picture-container:focus .avatar-lg {
+   border-color: #fd2d01;
+}
+
+.delete-picture-container button {
+   background-color: #fff;
    font-size: 20px;
-   color: #fd2d01;
+   color: #4e5166;
    cursor: pointer;
+}
+
+.delete-picture-container button:focus {
+   color: #fd2d01;
 }
 
 .comment-container {
@@ -326,11 +430,6 @@ section {
 
 .user-card {
    display: flex;
-}
-
-.avatar-lg {
-   height: 100px;
-   width: 100px;
 }
 
 .user-description {
@@ -358,4 +457,16 @@ section {
    border-radius: 10px;
    padding: 20px 0;
    margin-top: 160px;
+}
+
+@media screen and (max-width: 425px) {
+   nav {
+      flex-direction: column;
+   }
+   nav ul {
+      width: 230px;
+      justify-content: space-between;
+      border-top: 2px solid #4e5166;
+      padding: 10px 0;
+   }
 }

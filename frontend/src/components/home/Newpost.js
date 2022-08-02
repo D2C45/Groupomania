@@ -109,7 +109,13 @@ const Newpost = ({ changes, setChanges }) => {
 
          <div className="newpost-footer">
             <div className="btn-picture">
-               <i className="far fa-file-image"></i>
+               <label
+                  htmlFor="image"
+                  id="image-label"
+                  className="upload-img-label"
+               >
+                  <i className="far fa-file-image"></i>
+               </label>
                <input
                   type="file"
                   id="image"
@@ -118,6 +124,16 @@ const Newpost = ({ changes, setChanges }) => {
                   accept=".jpg, .jpeg, .png"
                   ref={ref}
                   onChange={(e) => uploadPicture(e)}
+                  onFocus={(e) =>
+                     document
+                        .getElementById('image-label')
+                        .classList.add('rounded')
+                  }
+                  onBlur={(e) =>
+                     document
+                        .getElementById('image-label')
+                        .classList.remove('rounded')
+                  }
                />
             </div>
             <div>

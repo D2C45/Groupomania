@@ -69,9 +69,11 @@ const Comment = ({ post, changes, setChanges }) => {
                value={message}
                onChange={(e) => setMessage(e.target.value)}
             />
-            <button className="footer-btn orange" type="submit">
-               <i className="fas fa-paper-plane"></i>
-            </button>
+            <div>
+               <button className="footer-btn orange" type="submit">
+                  <i className="fas fa-paper-plane"></i>
+               </button>
+            </div>
          </form>
          <ul>
             {post.comments.length !== 0 &&

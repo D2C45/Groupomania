@@ -106,11 +106,12 @@ const CommentContent = ({ comment, changes, setChanges }) => {
             </div>
             {(userData._id === comment.commentUserId || userData.isAdmin) && (
                <div className="update">
-                  <i
-                     className="fas fa-edit"
-                     onClick={() => setUpdate(true)}
-                  ></i>
-                  <i className="fas fa-trash" onClick={deleteComment}></i>
+                  <button onClick={() => setUpdate(true)}>
+                     <i className="fas fa-edit"></i>
+                  </button>
+                  <button onClick={deleteComment}>
+                     <i className="fas fa-trash"></i>
+                  </button>
                </div>
             )}
          </div>

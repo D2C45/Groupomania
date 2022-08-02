@@ -65,14 +65,31 @@ const UpdateProfile = ({
          </div>
          <div className="newpost-footer">
             <div className="btn-picture">
-               <i className="far fa-file-image"></i>
+               <label
+                  htmlFor={`image-${user._id}`}
+                  id={`image-label-${user._id}`}
+                  className="upload-img-label"
+               >
+                  <i className="far fa-file-image"></i>
+               </label>
                <input
                   type="file"
+                  id={`image-${user._id}`}
                   name="image"
                   className="upload-img"
                   accept=".jpg, .jpeg, .png"
                   ref={ref}
                   onChange={(e) => changePicture(e)}
+                  onFocus={(e) =>
+                     document
+                        .getElementById(`image-label-${user._id}`)
+                        .classList.add('rounded')
+                  }
+                  onBlur={(e) =>
+                     document
+                        .getElementById(`image-label-${user._id}`)
+                        .classList.remove('rounded')
+                  }
                />
             </div>
             <div>

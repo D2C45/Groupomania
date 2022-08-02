@@ -98,10 +98,11 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
                   className="avatar avatar-lg"
                />
                {update && picture !== '' && (
-                  <i
-                     className="far fa-times-circle"
-                     onClick={deletePicture}
-                  ></i>
+                  <div>
+                     <button onClick={deletePicture}>
+                        <i className="far fa-times-circle"></i>
+                     </button>
+                  </div>
                )}
             </div>
          )}
@@ -133,13 +134,16 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
                </div>
                {(user._id === userData._id || userData.isAdmin) && (
                   <div className="update">
-                     <i
-                        className="fas fa-edit"
+                     <button
                         onClick={() =>
                            update ? setUpdate(false) : setUpdate(true)
                         }
-                     ></i>
-                     <i className="fas fa-trash" onClick={deleteUser}></i>
+                     >
+                        <i className="fas fa-edit"></i>
+                     </button>
+                     <button onClick={deleteUser}>
+                        <i className="fas fa-trash"></i>
+                     </button>
                   </div>
                )}
             </div>
