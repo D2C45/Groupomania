@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
 import { UserContext } from '../../utils/context'
 import { dateFormat } from '../../utils/functions'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import UpdateProfile from './UpdateProfile'
 
@@ -68,7 +68,14 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
    return (
       <li className="card-container user-card">
          {!update ? (
-            <a href="/" className="delete-picture-container">
+            <Link
+               to={
+                  user._id === userData._id
+                     ? '/account'
+                     : `/profile?id=${user._id}`
+               }
+               className="delete-picture-container"
+            >
                <img
                   src={
                      picture === ''
@@ -78,7 +85,7 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
                   alt="avatar de la personne qui a créé le post"
                   className="avatar avatar-lg"
                />
-            </a>
+            </Link>
          ) : (
             <div className="delete-picture-container">
                <img
@@ -103,10 +110,17 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
             <div className="card-header card-user pb10">
                <div className="card-userinfo">
                   {!update ? (
-                     <a href="/" className="author">
+                     <Link
+                        to={
+                           user._id === userData._id
+                              ? '/account'
+                              : `/profile?id=${user._id}`
+                        }
+                        className="author"
+                     >
                         {user.firstName} {user.lastName}{' '}
                         {user.isAdmin && '(Admin)'}
-                     </a>
+                     </Link>
                   ) : (
                      <div className="author">
                         {user.firstName} {user.lastName}{' '}

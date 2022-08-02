@@ -4,6 +4,7 @@ import { dateFormat } from '../../utils/functions'
 import UpdatePost from './UpdatePost'
 import { UserContext } from '../../utils/context'
 import Comment from './Comment'
+import { Link } from 'react-router-dom'
 
 const Card = ({ post, changes, setChanges }) => {
    // Information de l'utilisateur connecté
@@ -80,7 +81,13 @@ const Card = ({ post, changes, setChanges }) => {
       <li className="card-container">
          <div className="card-header pb10">
             <div className="card-user">
-               <a href="/">
+               <Link
+                  to={
+                     posterData._id === userData._id
+                        ? '/account'
+                        : `/profile?id=${posterData._id}`
+                  }
+               >
                   <img
                      src={
                         posterData.imageUrl === ''
@@ -90,12 +97,19 @@ const Card = ({ post, changes, setChanges }) => {
                      alt="avatar de la personne qui a créé le post"
                      className="avatar"
                   />
-               </a>
+               </Link>
                <div className="card-userinfo">
-                  <a href="/" className="author">
+                  <Link
+                     to={
+                        posterData._id === userData._id
+                           ? '/account'
+                           : `/profile?id=${posterData._id}`
+                     }
+                     className="author"
+                  >
                      {posterData.firstName} {posterData.lastName}{' '}
                      {posterData.isAdmin && '(Admin)'}
-                  </a>
+                  </Link>
                   <p className="date">{dateFormat(post.createdAt)}</p>
                </div>
             </div>

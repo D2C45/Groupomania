@@ -7,6 +7,7 @@ import './styles/index.css'
 import Users from './pages/Users'
 import { UserContext } from './utils/context'
 import Profile from './pages/Profile'
+import Account from './pages/Account'
 
 const App = () => {
    const { user } = useContext(UserContext)
@@ -18,6 +19,11 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route exact path="/users" element={user ? <Users /> : <Login />} />
             <Route path="/profile" element={user ? <Profile /> : <Login />} />
+            <Route
+               exact
+               path="/account"
+               element={user ? <Account /> : <Login />}
+            />
             <Route path="*" element={<Error />} />
          </Routes>
       </Router>

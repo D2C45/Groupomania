@@ -1,33 +1,34 @@
 import React, { useContext } from 'react'
 import logo from '../assets/logo.png'
 import { UserContext } from '../utils/context'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
-   const { logout, userData } = useContext(UserContext)
+   const { logout } = useContext(UserContext)
 
    return (
       <header>
          <nav>
             <div className="logo-container">
-               <a href="/">
+               <Link to="/">
                   <img src={logo} alt="logo de Groupomania" className="logo" />
-               </a>
+               </Link>
             </div>
             <ul>
                <li>
-                  <a href={`/profile?id=${userData._id}`}>
+                  <Link to="/account">
                      <i className="fas fa-user"></i>
-                  </a>
+                  </Link>
                </li>
                <li>
-                  <a href="/users">
+                  <Link to="/users">
                      <i className="fas fa-users"></i>
-                  </a>
+                  </Link>
                </li>
                <li>
-                  <a href="/">
+                  <Link to="/login">
                      <i className="fas fa-sign-out-alt" onClick={logout}></i>
-                  </a>
+                  </Link>
                </li>
             </ul>
          </nav>
