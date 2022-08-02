@@ -104,7 +104,6 @@ form label {
    color: #fd2d01;
    font-size: 25px;
    margin-left: 50px;
-   /* cursor: pointer; */
 }
 
 .upload-img {
@@ -341,4 +340,22 @@ section {
 
 .usercard-header {
    width: 100%;
+}
+
+.error-container {
+   width: 300px;
+   margin: auto;
+}
+
+.error {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 25px;
+   font-weight: bold;
+   color: #fd2d01;
+   background-color: white;
+   border-radius: 10px;
+   padding: 20px 0;
+   margin-top: 160px;
 }

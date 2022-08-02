@@ -85,7 +85,12 @@ const Profile = () => {
                      })}
                </ul>
             ) : (
-               <p>cette page n'existe pas</p>
+               <div className="error-container">
+                  <div className="error">
+                     <p>Erreur 404</p>
+                     <p>Cette page n'existe pas</p>
+                  </div>
+               </div>
             )}
          </main>
       </>
