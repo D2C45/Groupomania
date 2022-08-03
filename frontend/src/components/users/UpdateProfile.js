@@ -70,8 +70,9 @@ const UpdateProfile = ({
                   htmlFor={`image-${user._id}`}
                   id={`image-label-${user._id}`}
                   className="upload-img-label"
+                  aria-label="click pour ajouter ou changer la photo de profil"
                >
-                  <i className="far fa-file-image"></i>
+                  <i className="far fa-file-image" aria-hidden="true"></i>
                </label>
                <input
                   type="file"

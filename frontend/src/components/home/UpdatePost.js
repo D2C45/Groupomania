@@ -75,8 +75,15 @@ const UpdatePost = ({ post, setUpdate }) => {
                         />
                      </div>
                      <div>
-                        <button onClick={deletePicture}>
-                           <i className="far fa-times-circle"></i>
+                        <button
+                           onClick={deletePicture}
+                           aria-label="Bouton pour supprimer la photo"
+                        >
+                           <i
+                              className="far fa-times-circle"
+                              aria-hidden="true"
+                              title="Supprimer"
+                           ></i>
                         </button>
                      </div>
                   </div>
@@ -89,8 +96,9 @@ const UpdatePost = ({ post, setUpdate }) => {
                   htmlFor={`image-${post._id}`}
                   id={`image-label-${post._id}`}
                   className="upload-img-label"
+                  aria-label="click pour ajouter ou changer l'image"
                >
-                  <i className="far fa-file-image"></i>
+                  <i className="far fa-file-image" aria-hidden="true"></i>
                </label>
                <input
                   type="file"

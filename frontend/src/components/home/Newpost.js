@@ -113,8 +113,9 @@ const Newpost = () => {
                   htmlFor="image"
                   id="image-label"
                   className="upload-img-label"
+                  aria-label="click pour ajouter une image"
                >
-                  <i className="far fa-file-image"></i>
+                  <i className="far fa-file-image" aria-hidden="true"></i>
                </label>
                <input
                   type="file"

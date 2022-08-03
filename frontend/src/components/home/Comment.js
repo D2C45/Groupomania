@@ -70,8 +70,16 @@ const Comment = ({ post }) => {
                onChange={(e) => setMessage(e.target.value)}
             />
             <div>
-               <button className="footer-btn orange" type="submit">
-                  <i className="fas fa-paper-plane"></i>
+               <button
+                  className="footer-btn orange"
+                  type="submit"
+                  aria-label="Envoyer le commentaire"
+               >
+                  <i
+                     className="fas fa-paper-plane"
+                     aria-hidden="true"
+                     title="Envoyer"
+                  ></i>
                </button>
             </div>
          </form>

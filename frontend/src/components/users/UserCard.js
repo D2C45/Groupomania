@@ -82,7 +82,7 @@ const UserCard = ({ user, userPosts }) => {
                         ? require('../../assets/default-avatar.png')
                         : picture
                   }
-                  alt="avatar de la personne"
+                  alt={`avatar de ${user.firstName} ${user.lastName} qui permet d'aller consulter son profil`}
                   className="avatar avatar-lg"
                />
             </Link>
@@ -99,8 +99,15 @@ const UserCard = ({ user, userPosts }) => {
                />
                {update && picture !== '' && (
                   <div>
-                     <button onClick={deletePicture}>
-                        <i className="far fa-times-circle"></i>
+                     <button
+                        onClick={deletePicture}
+                        aria-label="Bouton pour supprimer la photo"
+                     >
+                        <i
+                           className="far fa-times-circle"
+                           aria-hidden="true"
+                           title="Supprimer"
+                        ></i>
                      </button>
                   </div>
                )}
@@ -138,11 +145,23 @@ const UserCard = ({ user, userPosts }) => {
                         onClick={() =>
                            update ? setUpdate(false) : setUpdate(true)
                         }
+                        aria-label="Bouton pour éditer le profil"
                      >
-                        <i className="fas fa-edit"></i>
+                        <i
+                           className="fas fa-edit"
+                           aria-hidden="true"
+                           title="Editer"
+                        ></i>
                      </button>
-                     <button onClick={deleteUser}>
-                        <i className="fas fa-trash"></i>
+                     <button
+                        onClick={deleteUser}
+                        aria-label="Bouton pour supprimer le profil"
+                     >
+                        <i
+                           className="fas fa-trash"
+                           aria-hidden="true"
+                           title="Supprimer"
+                        ></i>
                      </button>
                   </div>
                )}

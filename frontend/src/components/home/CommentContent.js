@@ -106,11 +106,25 @@ const CommentContent = ({ comment }) => {
             </div>
             {(userData._id === comment.commentUserId || userData.isAdmin) && (
                <div className="update">
-                  <button onClick={() => setUpdate(true)}>
-                     <i className="fas fa-edit"></i>
+                  <button
+                     onClick={() => setUpdate(true)}
+                     aria-label="Bouton pour éditer le commentaire"
+                  >
+                     <i
+                        className="fas fa-edit"
+                        aria-hidden="true"
+                        title="Editer"
+                     ></i>
                   </button>
-                  <button onClick={deleteComment}>
-                     <i className="fas fa-trash"></i>
+                  <button
+                     onClick={deleteComment}
+                     aria-label="Bouton pour supprimer le commentaire"
+                  >
+                     <i
+                        className="fas fa-trash"
+                        aria-hidden="true"
+                        title="Supprimer"
+                     ></i>
                   </button>
                </div>
             )}

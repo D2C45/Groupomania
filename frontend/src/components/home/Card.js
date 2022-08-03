@@ -94,7 +94,7 @@ const Card = ({ post }) => {
                            ? require('../../assets/default-avatar.png')
                            : posterData.imageUrl
                      }
-                     alt="avatar de la personne qui a créé le post"
+                     alt={`avatar de ${posterData.firstName} ${posterData.lastName} qui permet d'aller consulter son profil`}
                      className="avatar"
                   />
                </Link>
@@ -119,11 +119,23 @@ const Card = ({ post }) => {
                      onClick={() =>
                         update ? setUpdate(false) : setUpdate(true)
                      }
+                     aria-label="Bouton pour éditer le post"
                   >
-                     <i className="fas fa-edit"></i>
+                     <i
+                        className="fas fa-edit"
+                        aria-hidden="true"
+                        title="Editer"
+                     ></i>
                   </button>
-                  <button onClick={deletePost}>
-                     <i className="fas fa-trash"></i>
+                  <button
+                     onClick={deletePost}
+                     aria-label="Bouton pour supprimer le post"
+                  >
+                     <i
+                        className="fas fa-trash"
+                        aria-hidden="true"
+                        title="Supprimer"
+                     ></i>
                   </button>
                </div>
             )}
@@ -147,11 +159,23 @@ const Card = ({ post }) => {
 
          <div className="card-footer">
             <div className="btn-like-container">
-               <button className="footer-btn" onClick={likePost}>
+               <button
+                  className="footer-btn"
+                  onClick={likePost}
+                  aria-label="Bouton pour aimer le post"
+               >
                   {post.likersId.includes(userData._id) ? (
-                     <i className="fas fa-heart orange"></i>
+                     <i
+                        className="fas fa-heart orange"
+                        aria-hidden="true"
+                        title="Like"
+                     ></i>
                   ) : (
-                     <i className="far fa-heart"></i>
+                     <i
+                        className="far fa-heart"
+                        aria-hidden="true"
+                        title="Like"
+                     ></i>
                   )}
                </button>
                <p>{post.likersId.length}</p>
@@ -161,8 +185,13 @@ const Card = ({ post }) => {
                <button
                   className="footer-btn"
                   onClick={() => setComment(!comment)}
+                  aria-label="Bouton pour commenter le post et voir les commentaires"
                >
-                  <i className="far fa-comment"></i>
+                  <i
+                     className="far fa-comment"
+                     aria-hidden="true"
+                     title="Commentaire"
+                  ></i>
                </button>
                <p>{post.comments.length}</p>
             </div>
