@@ -9,6 +9,7 @@ const UpdateProfile = ({
    setPicture,
    file,
    setFile,
+   cancelModifications,
 }) => {
    const { changes, setChanges } = useContext(UserContext)
 
@@ -95,7 +96,7 @@ const UpdateProfile = ({
                />
             </div>
             <div>
-               <button className="btn-send" onClick={() => setUpdate(false)}>
+               <button className="btn-send" onClick={cancelModifications}>
                   Annuler
                </button>
                <button className="btn-send" onClick={sendUserModifications}>

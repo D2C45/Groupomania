@@ -65,6 +65,11 @@ const UserCard = ({ user, userPosts }) => {
       setFile('')
    }
 
+   const cancelModifications = () => {
+      setPicture(user.imageUrl)
+      setUpdate(false)
+   }
+
    return (
       <li className="card-container user-card">
          {!update ? (
@@ -143,7 +148,7 @@ const UserCard = ({ user, userPosts }) => {
                   <div className="update">
                      <button
                         onClick={() =>
-                           update ? setUpdate(false) : setUpdate(true)
+                           update ? cancelModifications() : setUpdate(true)
                         }
                         aria-label="Bouton pour éditer le profil"
                      >
@@ -177,6 +182,7 @@ const UserCard = ({ user, userPosts }) => {
                   setPicture={setPicture}
                   file={file}
                   setFile={setFile}
+                  cancelModifications={cancelModifications}
                />
             )}
          </div>
