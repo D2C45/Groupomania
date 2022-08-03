@@ -28,15 +28,6 @@ mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
   .then(() => console.log('Connected to MongoDB'))
   .catch(() => console.log('Connection to MongoDB failed'));
 
-// Définition des headers de la réponse
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH');
-//     res.setHeader('preflightContinue', false);
-//     res.setHeader('Access-Control-Allow-Credentials', true);
-//     next();
-//   });
 
 const corsOptions = {
   origin: 'http://localhost:3000',
