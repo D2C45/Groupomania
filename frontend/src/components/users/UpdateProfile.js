@@ -1,16 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
+import { UserContext } from '../../utils/context'
 
 const UpdateProfile = ({
    user,
    setUpdate,
-   changes,
-   setChanges,
    picture,
    setPicture,
    file,
    setFile,
 }) => {
+   const { changes, setChanges } = useContext(UserContext)
+
    const [description, setDescription] = useState(user.description)
 
    // ref pour pouvoir vider le fichier uploader

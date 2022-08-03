@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import axios from 'axios'
 import UserCard from '../components/users/UserCard'
 import Card from '../components/home/Card'
+import { UserContext } from '../utils/context'
 
 const Profile = () => {
+   const { changes } = useContext(UserContext)
    // variable récupérant l'url de la page (chaine de caractères)
    const currentUrlString = window.location.href
    // variable qui convertit la chaine de caractères en url
@@ -13,8 +15,6 @@ const Profile = () => {
    const profilId = currentUrl.searchParams.get('id')
    // Données de l'utilisateur
    const [user, setUser] = useState('')
-   // switch pour relancer la requête si il ya des changements dans le profil
-   const [changes, setChanges] = useState(false)
    // les posts de cet utilisateur
    const [userPosts, setUserPosts] = useState()
 
@@ -66,22 +66,10 @@ const Profile = () => {
          <main>
             {user ? (
                <ul className="posts-container">
-                  <UserCard
-                     user={user}
-                     changes={changes}
-                     setChanges={setChanges}
-                     userPosts={userPosts}
-                  />
+                  <UserCard user={user} userPosts={userPosts} />
                   {userPosts &&
                      userPosts.map((post) => {
-                        return (
-                           <Card
-                              post={post}
-                              key={post._id}
-                              changes={changes}
-                              setChanges={setChanges}
-                           />
-                        )
+                        return <Card post={post} key={post._id} />
                      })}
                </ul>
             ) : (

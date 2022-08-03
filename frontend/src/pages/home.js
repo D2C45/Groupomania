@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Card from '../components/home/Card'
 import Newpost from '../components/home/Newpost'
 import axios from 'axios'
+import { UserContext } from '../utils/context'
 
 const Home = () => {
+   const { changes } = useContext(UserContext)
+
    const [posts, setPosts] = useState(null)
-   // switch pour relancer la requête si il ya des changements dans le fil des posts
-   const [changes, setChanges] = useState(false)
 
    // Récupère tous les posts
    useEffect(() => {
@@ -33,20 +34,13 @@ const Home = () => {
       <>
          <Header />
          <section>
-            <Newpost changes={changes} setChanges={setChanges} />
+            <Newpost />
          </section>
          <main>
             <ul className="posts-container">
                {posts &&
                   posts.map((post) => {
-                     return (
-                        <Card
-                           post={post}
-                           key={post._id}
-                           changes={changes}
-                           setChanges={setChanges}
-                        />
-                     )
+                     return <Card post={post} key={post._id} />
                   })}
             </ul>
          </main>

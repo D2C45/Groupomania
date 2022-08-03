@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
+import { UserContext } from '../../utils/context'
 
-const UpdatePost = ({ post, setUpdate, changes, setChanges }) => {
+const UpdatePost = ({ post, setUpdate }) => {
+   const { changes, setChanges } = useContext(UserContext)
+
    const [message, setMessage] = useState(post.message)
    const [picture, setPicture] = useState(post.imageUrl)
    const [file, setFile] = useState('')

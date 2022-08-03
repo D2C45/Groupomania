@@ -6,6 +6,8 @@ export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
    const [user, setUser] = useState(JSON.parse(localStorage.getItem('auth')))
    const [userData, setUserData] = useState({})
+   // switch pour relancer les requêtes si il ya des changements
+   const [changes, setChanges] = useState(false)
 
    useEffect(() => {
       if (JSON.parse(localStorage.getItem('auth')) !== null) {
@@ -26,7 +28,7 @@ export const UserProvider = ({ children }) => {
                setUser(null)
             })
       }
-   }, [user])
+   }, [user, changes])
 
    const login = (auth) => {
       localStorage.setItem('auth', JSON.stringify(auth))
@@ -45,6 +47,8 @@ export const UserProvider = ({ children }) => {
             userData,
             login,
             logout,
+            changes,
+            setChanges,
          }}
       >
          {children}

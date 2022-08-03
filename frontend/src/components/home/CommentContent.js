@@ -3,9 +3,9 @@ import { dateFormat } from '../../utils/functions'
 import axios from 'axios'
 import { UserContext } from '../../utils/context'
 
-const CommentContent = ({ comment, changes, setChanges }) => {
+const CommentContent = ({ comment }) => {
    // Information de l'utilisateur connecté
-   const { userData } = useContext(UserContext)
+   const { userData, changes, setChanges } = useContext(UserContext)
    // Toggle pour la mise à jour du commentaire
    const [update, setUpdate] = useState(false)
    // Message contenu dans le commentaire

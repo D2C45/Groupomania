@@ -2,8 +2,8 @@ import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
 import { UserContext } from '../../utils/context'
 
-const Newpost = ({ changes, setChanges }) => {
-   const { userData } = useContext(UserContext)
+const Newpost = () => {
+   const { userData, changes, setChanges } = useContext(UserContext)
 
    const [message, setMessage] = useState('')
    const [picture, setPicture] = useState('')

@@ -6,9 +6,9 @@ import { UserContext } from '../../utils/context'
 import Comment from './Comment'
 import { Link } from 'react-router-dom'
 
-const Card = ({ post, changes, setChanges }) => {
+const Card = ({ post }) => {
    // Information de l'utilisateur connecté
-   const { userData } = useContext(UserContext)
+   const { userData, changes, setChanges } = useContext(UserContext)
    // Information de l'utilisateur qui a créé le post
    const [posterData, setPosterData] = useState('')
    // Toggle pour la mise à jour du post
@@ -142,12 +142,7 @@ const Card = ({ post, changes, setChanges }) => {
                </div>
             </div>
          ) : (
-            <UpdatePost
-               post={post}
-               setUpdate={setUpdate}
-               changes={changes}
-               setChanges={setChanges}
-            />
+            <UpdatePost post={post} setUpdate={setUpdate} />
          )}
 
          <div className="card-footer">

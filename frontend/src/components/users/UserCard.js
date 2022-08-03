@@ -5,8 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import UpdateProfile from './UpdateProfile'
 
-const UserCard = ({ user, changes, setChanges, userPosts }) => {
-   const { userData } = useContext(UserContext)
+const UserCard = ({ user, userPosts }) => {
+   const { userData, changes, setChanges } = useContext(UserContext)
    const navigate = useNavigate()
 
    const [picture, setPicture] = useState(user.imageUrl)
@@ -154,8 +154,6 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
                <UpdateProfile
                   user={user}
                   setUpdate={setUpdate}
-                  changes={changes}
-                  setChanges={setChanges}
                   picture={picture}
                   setPicture={setPicture}
                   file={file}

@@ -7,9 +7,8 @@ import axios from 'axios'
 
 const Account = () => {
    // Information de l'utilisateur connecté
-   const { userData } = useContext(UserContext)
-   // switch pour relancer la requête si il ya des changements dans le profil
-   const [changes, setChanges] = useState(false)
+   const { userData, changes } = useContext(UserContext)
+
    // les posts de cet utilisateur
    const [userPosts, setUserPosts] = useState()
 
@@ -40,22 +39,10 @@ const Account = () => {
          <Header />
          <main>
             <ul className="posts-container">
-               <UserCard
-                  user={userData}
-                  changes={changes}
-                  setChanges={setChanges}
-                  userPosts={userPosts}
-               />
+               <UserCard user={userData} userPosts={userPosts} />
                {userPosts &&
                   userPosts.map((post) => {
-                     return (
-                        <Card
-                           post={post}
-                           key={post._id}
-                           changes={changes}
-                           setChanges={setChanges}
-                        />
-                     )
+                     return <Card post={post} key={post._id} />
                   })}
             </ul>
          </main>

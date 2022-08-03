@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import UserCard from '../components/users/UserCard'
 import axios from 'axios'
+import { UserContext } from '../utils/context'
 
 const Users = () => {
+   const { changes } = useContext(UserContext)
+
    const [users, setUsers] = useState(null)
-   // switch pour relancer la requête si il ya des changements dans les utilisateurs
-   const [changes, setChanges] = useState(false)
 
    // Récupère tous les utilisateurs
    useEffect(() => {
@@ -35,14 +36,7 @@ const Users = () => {
             <ul className="posts-container">
                {users &&
                   users.map((user) => {
-                     return (
-                        <UserCard
-                           user={user}
-                           key={user._id}
-                           changes={changes}
-                           setChanges={setChanges}
-                        />
-                     )
+                     return <UserCard user={user} key={user._id} />
                   })}
             </ul>
          </main>

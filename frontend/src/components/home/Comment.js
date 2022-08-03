@@ -3,8 +3,8 @@ import { UserContext } from '../../utils/context'
 import CommentContent from './CommentContent'
 import axios from 'axios'
 
-const Comment = ({ post, changes, setChanges }) => {
-   const { userData } = useContext(UserContext)
+const Comment = ({ post }) => {
+   const { userData, changes, setChanges } = useContext(UserContext)
 
    const [message, setMessage] = useState('')
 
@@ -82,8 +82,6 @@ const Comment = ({ post, changes, setChanges }) => {
                      <CommentContent
                         comment={comment}
                         key={post._id + comment._id}
-                        changes={changes}
-                        setChanges={setChanges}
                      />
                   )
                })}
