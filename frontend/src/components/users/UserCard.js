@@ -82,7 +82,7 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
                         ? require('../../assets/default-avatar.png')
                         : picture
                   }
-                  alt="avatar de la personne qui a créé le post"
+                  alt="avatar de la personne"
                   className="avatar avatar-lg"
                />
             </Link>
@@ -94,7 +94,7 @@ const UserCard = ({ user, changes, setChanges, userPosts }) => {
                         ? require('../../assets/default-avatar.png')
                         : picture
                   }
-                  alt="avatar de la personne qui a créé le post"
+                  alt="avatar de la personne"
                   className="avatar avatar-lg"
                />
                {update && picture !== '' && (
