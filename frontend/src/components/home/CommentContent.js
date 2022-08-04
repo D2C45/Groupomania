@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { dateFormat } from '../../utils/functions'
 import axios from 'axios'
 import { UserContext } from '../../utils/context'
+import { Link } from 'react-router-dom'
 
 const CommentContent = ({ comment }) => {
    // Information de l'utilisateur connecté
@@ -61,7 +62,7 @@ const CommentContent = ({ comment }) => {
          })
    }
 
-   // Récupère les informations de la personne qui a créé le post
+   // Récupère les informations de la personne qui a créé le commentaire
    useEffect(() => {
       axios({
          method: 'get',
@@ -85,22 +86,51 @@ const CommentContent = ({ comment }) => {
       <li className="card-container comment-container">
          <div className="card-header pb10">
             <div className="card-user">
-               <a href="/">
-                  <img
-                     src={
-                        commenterData.imageUrl === ''
-                           ? require('../../assets/default-avatar.png')
-                           : commenterData.imageUrl
+               {commenterData ? (
+                  <Link
+                     to={
+                        commenterData._id === userData._id
+                           ? '/account'
+                           : `/profile?id=${commenterData._id}`
                      }
-                     alt="avatar de la personne connectée"
-                     className="avatar"
-                  />
-               </a>
+                  >
+                     <img
+                        src={
+                           commenterData.imageUrl === ''
+                              ? require('../../assets/default-avatar.png')
+                              : commenterData.imageUrl
+                        }
+                        alt={`avatar de ${commenterData.firstName} ${commenterData.lastName} qui a commenté et qui permet d'aller consulter son profil`}
+                        className="avatar"
+                     />
+                  </Link>
+               ) : (
+                  <div>
+                     <img
+                        src={require('../../assets/default-avatar.png')}
+                        alt="avatar par défaut car l'utilisateur qui a commenté a supprimé son compte"
+                        className="avatar"
+                     />
+                  </div>
+               )}
+
                <div className="card-userinfo">
-                  <a href="/" className="author">
-                     {commenterData.firstName} {commenterData.lastName}{' '}
-                     {commenterData.isAdmin && '(Admin)'}
-                  </a>
+                  {commenterData ? (
+                     <Link
+                        to={
+                           commenterData._id === userData._id
+                              ? '/account'
+                              : `/profile?id=${commenterData._id}`
+                        }
+                        className="author"
+                     >
+                        {commenterData.firstName} {commenterData.lastName}{' '}
+                        {commenterData.isAdmin && '(Admin)'}
+                     </Link>
+                  ) : (
+                     <p className="author">Utilisateur supprimé</p>
+                  )}
+
                   <p className="date">{dateFormat(comment.timestamp)}</p>
                </div>
             </div>
