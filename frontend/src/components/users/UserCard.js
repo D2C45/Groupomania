@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { UserContext } from '../../utils/context'
 import { dateFormat } from '../../utils/functions'
 import { Link } from 'react-router-dom'
@@ -14,6 +14,10 @@ const UserCard = ({ user, userPosts }) => {
 
    // ref pour pouvoir vider le fichier uploader
    const ref = useRef()
+
+   const handlePicture = () => {
+      setPicture(user.imageUrl)
+   }
 
    const deleteUser = () => {
       // suppression de tous les posts de l'utilisateur supprimé
@@ -68,6 +72,8 @@ const UserCard = ({ user, userPosts }) => {
       setPicture(user.imageUrl)
       setUpdate(false)
    }
+
+   useEffect(handlePicture)
 
    return (
       <li className="card-container user-card">
