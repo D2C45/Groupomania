@@ -1,13 +1,12 @@
 import React, { useContext, useRef, useState } from 'react'
 import { UserContext } from '../../utils/context'
 import { dateFormat } from '../../utils/functions'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import UpdateProfile from './UpdateProfile'
 
 const UserCard = ({ user, userPosts }) => {
-   const { userData, changes, setChanges } = useContext(UserContext)
-   const navigate = useNavigate()
+   const { userData, changes, setChanges, logout } = useContext(UserContext)
 
    const [picture, setPicture] = useState(user.imageUrl)
    const [file, setFile] = useState('')
@@ -50,9 +49,9 @@ const UserCard = ({ user, userPosts }) => {
       })
          .then((response) => {
             console.log(response)
-            localStorage.removeItem('auth')
+            // localStorage.removeItem('auth')
+            !userData.isAdmin && logout()
             setChanges(!changes)
-            navigate('/login')
          })
          .catch(function (error) {
             console.log(error)

@@ -8,7 +8,7 @@ import { UserContext } from '../utils/context'
 const Home = () => {
    const { changes } = useContext(UserContext)
 
-   const [posts, setPosts] = useState(null)
+   const [posts, setPosts] = useState([])
 
    // Récupère tous les posts
    useEffect(() => {

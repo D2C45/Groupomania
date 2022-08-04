@@ -9,10 +9,10 @@ const Account = () => {
    // Information de l'utilisateur connecté
    const { userData, changes } = useContext(UserContext)
 
-   // les posts de cet utilisateur
+   // // les posts de l'utilisateur
    const [userPosts, setUserPosts] = useState()
 
-   // Récupère les posts de l'utilisateur
+   // // Récupère les posts de l'utilisateur
    useEffect(() => {
       axios({
          method: 'get',
