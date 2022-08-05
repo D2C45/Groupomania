@@ -4,9 +4,11 @@ import axios from 'axios'
 import UserCard from '../components/users/UserCard'
 import Card from '../components/home/Card'
 import { UserContext } from '../utils/context'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
    const { changes } = useContext(UserContext)
+   const navigate = useNavigate()
    // variable récupérant l'url de la page (chaine de caractères)
    const currentUrlString = window.location.href
    // variable qui convertit la chaine de caractères en url
@@ -35,8 +37,9 @@ const Profile = () => {
          })
          .catch(function (error) {
             console.log(error)
+            navigate('/error')
          })
-   }, [profilId, changes])
+   }, [profilId, changes, navigate])
 
    // Récupère les posts de l'utilisateur
    useEffect(() => {
@@ -64,7 +67,7 @@ const Profile = () => {
       <>
          <Header />
          <main>
-            {user ? (
+            {user && (
                <ul className="posts-container">
                   <UserCard user={user} userPosts={userPosts} />
                   {userPosts &&
@@ -72,13 +75,6 @@ const Profile = () => {
                         return <Card post={post} key={post._id} />
                      })}
                </ul>
-            ) : (
-               <div className="error-container">
-                  <div className="error">
-                     <p>Erreur 404</p>
-                     <p>Cette page n'existe pas</p>
-                  </div>
-               </div>
             )}
          </main>
       </>

@@ -65,7 +65,7 @@ Connected to MongoDB</code></pre>
 
 ## Etape 7. Installation du frontend
 
-Depuis le dossier backend, à l'aide de votre terminal, installez les dépendances avec la commande :
+Depuis le dossier frontend, à l'aide de votre terminal, installez les dépendances avec la commande :
 <pre><code>npm install</code></pre>
 
 ## Etape 8. Configuration des variables d'environnement et du fichier .gitignore du frontend
