@@ -73,7 +73,7 @@ const UserCard = ({ user, userPosts }) => {
       setUpdate(false)
    }
 
-   useEffect(handlePicture)
+   useEffect(handlePicture, [user.imageUrl])
 
    return (
       <li className="card-container user-card">

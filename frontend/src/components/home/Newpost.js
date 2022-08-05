@@ -88,8 +88,12 @@ const Newpost = () => {
             <div className="card-container border">
                <div className="card-user pb10">
                   <img
-                     src={require('../../assets/sunset.jpg')}
-                     alt="avatar"
+                     src={
+                        userData.imageUrl === ''
+                           ? require('../../assets/default-avatar.png')
+                           : userData.imageUrl
+                     }
+                     alt="avatar  de la personne connectée"
                      className="avatar"
                   />
                   <div className="card-userinfo">

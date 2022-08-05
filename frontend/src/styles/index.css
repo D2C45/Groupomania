@@ -73,7 +73,7 @@ a:-webkit-any-link {
 
 .input-container p {
    margin-top: 5px;
-   color: #4e5166;
+   color: #e60000;
    font-weight: bold;
 }
 
@@ -98,6 +98,10 @@ form label {
    align-items: center;
    border-top: 1px solid #4e5166;
    margin-top: 20px;
+}
+
+.isSignup-container p {
+   color: #4e5166;
 }
 
 /****************** button login ***************/
